@@ -3,11 +3,8 @@ package com.example.qrbinary.data
 import android.graphics.Bitmap
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
-import com.google.zxing.ErrorCorrectionLevel
-import com.google.zxing.WriterException
 import com.google.zxing.qrcode.QRCodeWriter
-import com.google.zxing.qrcode.decoder.Version
-import com.google.zxing.qrcode.encoder.Encoder
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 import com.google.zxing.common.BitMatrix
 import java.nio.charset.StandardCharsets
 
@@ -19,9 +16,6 @@ object QrEncoder {
             "Слишком много данных: ${bytes.size} байт. Максимум $MAX_BYTES."
         }
 
-        // ISO-8859-1 is a one-to-one mapping for all byte values 0..255.
-        // ZXing therefore puts these characters into QR byte mode rather than
-        // UTF-8 encoding them into a different byte sequence.
         val payload = String(bytes, StandardCharsets.ISO_8859_1)
 
         val hints = mapOf(
