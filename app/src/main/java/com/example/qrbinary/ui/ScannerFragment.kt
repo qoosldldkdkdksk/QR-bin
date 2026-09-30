@@ -19,8 +19,10 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
+import androidx.camera.core.FocusMeteringAction
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
+import androidx.camera.core.SurfaceOrientedMeteringPointFactory
 import androidx.camera.core.TorchState
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
@@ -89,11 +91,12 @@ class ScannerFragment : Fragment() {
 
         preview.setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_UP) {
-                camera?.cameraControl?.startFocusAndMetering(
-                    androidx.camera.core.SurfaceOrientedMeteringPointFactory(
-                        preview.width.toFloat(), preview.height.toFloat()
-                    ).createPoint(event.x, event.y)
+                val factory = SurfaceOrientedMeteringPointFactory(
+                    preview.width.toFloat(), preview.height.toFloat()
                 )
+                val point = factory.createPoint(event.x, event.y)
+                val focusAction = FocusMeteringAction.Builder(point).build()
+                camera?.cameraControl?.startFocusAndMetering(focusAction)
                 true
             } else true
         }
