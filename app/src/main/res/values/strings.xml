@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QR Binary</string>
+    <string name="scan">Сканировать</string>
+    <string name="generate">Создать QR</string>
+    <string name="history">История</string>
+    <string name="hint_scan">Наведите камеру на QR-код</string>
+    <string name="torch">Фонарик</string>
+    <string name="gallery">Импорт QR</string>
+    <string name="choose_image">Выбрать картинку из галереи</string>
+    <string name="save">Сохранить</string>
+    <string name="share">Поделиться</string>
+    <string name="verify">Проверить</string>
+</resources>
